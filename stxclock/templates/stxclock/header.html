@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Stock Exchange Clock</title>
+  <meta charset="utf-8" />
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'stxclock/css/bootstrap.min.css' %}" type="text/css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+    html,
+    body {
+      height:100%
+    }
+  </style>
+</head>
+
+<body class="body">
+  <div class="container-fluid" style="min-height:95%;">
+    <div class="row">
+      <div class="col-sm-10">
+        <br>
+        <center>
+          <h3>Stock Exchange Clock</h3>
+        </center>
+        <!--  <span class="utctime">{% now "jS F Y H:i:s" %}</span>-->
+      </div>
+      <div class="col-sm-2" id="utctime"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <br>
+        <br>
+        <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="{% url 'stxclock:index' %}">Home</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-10">
+       <div class="container-fluid">
+         <br>
+         <br>
+         <br>
+         {% block content %}
+         {% endblock %}
+       </div>
+     </div>
+
+    </div>
+  </div>
+  <footer>
+    <div class="container-fluid" style='margin-left:15px'>
+      <p><a href="#" target="blank">Contact</a></p>
+    </div>
+  </footer>
+{% load static %}
+<script src="{% static "stxclock/js/jquery-3.1.1.min.js" %}"></script>
+<script src="{% static "stxclock/js/app.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "stxclock/header.html" %}
+{% block content %}
+{% if exchange_list %}
+  {% for exchange in exchange_list %}
+    <div class="panel panel-default col-md-6 no-padding">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ exchange.name }}</h3>
+      </div>
+      <div class="panel-body" id="{{ exchange.id }}">
+        <span>Timezone: {{ exchange.timezone }} </span>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+    <p>No exchanges are available.</p>
+{% endif %}
+{% endblock %}
