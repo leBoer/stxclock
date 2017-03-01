@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.views import generic
 from django.contrib.auth.models import User
 from rest_framework import generics, renderers, permissions, viewsets
 from rest_framework.decorators import api_view, detail_route
@@ -67,6 +68,16 @@ def api_root(request, format=None):
         })
 
 
+class IndexView(generic.ListView):
+    template_name = 'stxclock/index.html'
+    context_object_name = 'stxclock_index'
+
+    def get_queryset(self):
+        return Exchange.objects.all()
+
+def index(request):
+    exchanges = Exchange.objects.all()
+    return render(request, 'stxclock/index.html', {'exchanges': exchanges})
 # def index(request):
 #     exchange_list = Exchange.objects.all()
 #     context = {

@@ -19,7 +19,7 @@ from django.contrib import admin
 # from stxclock import views
 
 urlpatterns = [
-    url(r'^', include('stxclock.urls')),
+    url(r'', include('stxclock.urls')),
     url(r'^stxclock/', include('stxclock.urls')),
     url(r'^admin/', admin.site.urls),
 ]
