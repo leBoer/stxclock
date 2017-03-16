@@ -76,8 +76,8 @@ class IndexView(generic.ListView):
         return Exchange.objects.all()
 
 def index(request):
-    exchanges = Exchange.objects.all()
-    return render(request, 'stxclock/index.html', {'exchanges': exchanges})
+    exchange_list = Exchange.objects.all()
+    return render(request, 'stxclock/index.html', {'exchange_list': exchange_list})
 # def index(request):
 #     exchange_list = Exchange.objects.all()
 #     context = {

@@ -3,17 +3,16 @@ $(function() {
   var viewModel = {
     init: function() {
       view.init();
-      console.log('Initiating Cookie Script');
       var csrftoken = this.getCookie('csrftoken');
-      console.log('Cookie script should have been completed now...');
     },
     getExchanges: function() {
       $.ajax({
         url: 'api/exchanges',
         success: function(data) {
           console.log('AJAX was a success!');
-          console.log(data);
         }
+      }).done(function (data) {
+        view.renderExchanges(data);
       })
     },
     getCookie: function(name) {
@@ -29,7 +28,6 @@ $(function() {
           }
         }
       }
-      console.log('Cookie script completed!');
       return cookieValue;
     }
   };
@@ -44,15 +42,20 @@ $(function() {
     // Adds the current UTC time to the top of the page
     render: function() {
       $('#utctime').append('<p>' + "Current UTC Time: " + view.currentUTCTime() + '</p>');
-      this.timeLoop();
       viewModel.getExchanges();
+      this.timeLoop();
+    },
+    // Rendering function just for the AJAX stuff
+    renderExchanges: function(data) {
+      var exchanges = data.results;
+      console.log(exchanges);
     },
 
     // Gets the current UTC time
     currentUTCTime: function() {
       var d = new Date();
       return d.toUTCString();
-    },
+      },
 
     // Keeps the times updated
     timeLoop: function() {
