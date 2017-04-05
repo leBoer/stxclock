@@ -10,24 +10,6 @@ from .serializers import ExchangeSerializer, UserSerializer
 from .permissions import IsOwnerOrReadOnly
 
 
-# # Lists all exchanges or create a new one
-# # exchanges/
-# class ExchangeList(generics.ListCreateAPIView):
-#     queryset = Exchange.objects.all()
-#     serializer_class = ExchangeSerializer
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-#     def perform_create(self, serializer):
-#         serializer.save(owner=self.request.user)
-
-
-# # Retrieve one exchange
-# # exchanges/1/
-# class ExchangeDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Exchange.objects.all()
-#     serializer_class = ExchangeSerializer
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-#                           IsOwnerOrReadOnly,)
 class ExchangeViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides 'list', 'create', 'retrieve',
@@ -50,19 +32,20 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-# class UserList(generics.ListAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
 
-
-# class UserDetail(generics.RetrieveAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
+# class WeekendViewSet(viewsets.ReadOnlyModelViewSet):
+#     """
+#     This viewset automatically provides 'list' and detail' actions.
+#     """
+#     queryset = Weekend.objects.all()
+#     serializer_class = WeekendSerializer
 
 
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
+        'holidays': reverse('holiday-list', request=request, format=format),
+        'weekends': reverse('weekend-list', request=request, format=format),
         'users': reverse('user-list', request=request, format=format),
         'exchanges': reverse('exchange-list', request=request, format=format)
         })

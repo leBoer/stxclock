@@ -40,3 +40,39 @@ class Exchange(models.Model):
     def __str__(self):
         return self.name
 
+class Weekend(models.Model):
+    exchange = models.ForeignKey(Exchange, related_name='weekend', on_delete=models.CASCADE)
+    MONDAY = 'Monday'
+    TUESDAY = 'Tuesday'
+    WEDNESDAY = 'Wednesday'
+    THURSDAY = 'Thursday'
+    FRIDAY = 'Friday'
+    SATURDAY = 'Saturday'
+    SUNDAY = 'Sunday'
+    WEEKEND_CHOICES = (
+        (MONDAY, 'Monday'),
+        (TUESDAY, 'Tuesday'),
+        (WEDNESDAY, 'Wednesday'),
+        (THURSDAY, 'Thursday'),
+        (FRIDAY, 'Friday'),
+        (SATURDAY, 'Saturday'),
+        (SUNDAY, 'Sunday'),
+    )
+    day = models.CharField(max_length=10, choices=WEEKEND_CHOICES, default=SATURDAY)
+
+    class Meta:
+        ordering = ('exchange', 'day',)
+
+    def __str__(self):
+        return self.day
+
+class Holiday(models.Model):
+    exchange = models.ForeignKey(Exchange, related_name='holidays', on_delete=models.CASCADE)
+    date = models.DateField()
+
+    class Meta:
+        ordering = ('exchange', 'date',)
+
+    def __str__(self):
+        date = self.date.strftime("%B %d, %Y")
+        return  date

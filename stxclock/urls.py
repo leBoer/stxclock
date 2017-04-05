@@ -7,6 +7,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'exchanges', views.ExchangeViewSet)
 router.register(r'users', views.UserViewSet)
+# router.register(r'weekends', views.WeekendViewSet)
 
 
 # The API URLs are now determined automatically by the router.
