@@ -32,15 +32,6 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
-# class WeekendViewSet(viewsets.ReadOnlyModelViewSet):
-#     """
-#     This viewset automatically provides 'list' and detail' actions.
-#     """
-#     queryset = Weekend.objects.all()
-#     serializer_class = WeekendSerializer
-
-
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
@@ -51,24 +42,13 @@ def api_root(request, format=None):
         })
 
 
-class IndexView(generic.ListView):
-    template_name = 'stxclock/index.html'
-    context_object_name = 'stxclock_index'
+# class IndexView(generic.ListView):
+#     template_name = 'stxclock/index.html'
+#     context_object_name = 'stxclock_index'
 
-    def get_queryset(self):
-        return Exchange.objects.all()
+#     def get_queryset(self):
+#         return Exchange.objects.all()
 
-def index(request):
-    exchange_list = Exchange.objects.all()
-    return render(request, 'stxclock/index.html', {'exchange_list': exchange_list})
 # def index(request):
 #     exchange_list = Exchange.objects.all()
-#     context = {
-#             'exchange_list': exchange_list,
-#             }
-#     return render(request, 'stxclock/index.html', context)
-
-
-# def detail(request, exchange_id):
-#     exchange = get_object_or_404(Exchange, pk=exchange_id)
-#     return render(request, 'stxclock/detail.html', {'exchange': exchange})
+#     return render(request, 'stxclock/index.html', {'exchange_list': exchange_list})
