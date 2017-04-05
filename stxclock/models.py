@@ -18,13 +18,6 @@ class Exchange(models.Model):
     timezone = TimeZoneField()
     opening_time = models.TimeField()
     closing_time = models.TimeField()
-    open_monday = models.BooleanField()
-    open_tuesday = models.BooleanField()
-    open_wednesday = models.BooleanField()
-    open_thursday = models.BooleanField()
-    open_friday = models.BooleanField()
-    open_saturday = models.BooleanField()
-    open_sunday = models.BooleanField()
     owner = models.ForeignKey('auth.User', related_name='exchanges', on_delete=models.CASCADE)
 
     class Meta:

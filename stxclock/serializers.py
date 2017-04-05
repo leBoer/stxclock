@@ -21,13 +21,6 @@ class ExchangeSerializer(serializers.HyperlinkedModelSerializer):
             'timezone',
             'opening_time',
             'closing_time',
-            'open_monday',
-            'open_tuesday',
-            'open_wednesday',
-            'open_thursday',
-            'open_friday',
-            'open_saturday',
-            'open_sunday',
             'weekend',
             'holidays',
             'owner'
